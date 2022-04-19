@@ -1,4 +1,7 @@
 body {
+  font-family: 'Bitter', serif;
+  font-family: 'Lora', serif;
+  background-color:rgba(101, 136, 131, 0.758);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

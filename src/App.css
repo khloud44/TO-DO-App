@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  border-radius: 10px;
+  background-image:radial-gradient(
+      circle at bottom right,
+      #ccffaa,
+      #1e5b53 80%
+    );
+
 }
 
 .App-logo {

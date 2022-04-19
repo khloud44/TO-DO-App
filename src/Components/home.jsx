@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Home({ setTasks}){
+export default function Home({ setTasks , taskLength}){
     const [task , getTask]=useState("");
     const [tasksErr , setTasksErr]=useState(null);
     let handlergettask=(e)=>{
@@ -14,31 +14,34 @@ export default function Home({ setTasks}){
 
     };
     let hanglersetTasks =()=>{
-        if(!tasksErr){
+        if(!tasksErr && task !=""){
+            console.log(taskLength);
             setTasks(
-                task
+                {id:taskLength+1 , name:task, isDone:false}
             );
+        }else if(task ==""){
+            setTasksErr("Tasck Name Is Required");
         }
         getTask("")
     }
     return (
         <>
-        <div className="container bg-info text-light p-3 rounded">
+        <div className="container  text-light p-3 rounded">
             <div className="row d-flex flex-colunm justify-content-end align-items-end">
                 <div className="col-12 text-end mt-3">
-                    <h1>TO-DO App!</h1>
+                    
                 </div>
                 <div className="col-md-6 text-end mt-3 ">
                     <label htmlFor="task">Add New Task</label>
                 </div>
                 <div className="col-md-12 text-end mb-3">
                     <input type="text" className={`form-control text-info ${tasksErr ? "border-danger":""}`} id="task" value={task} onChange={(e)=>{handlergettask(e)}}/>
-                    <div id="nameHelp" className="form-text text-danger">
+                    <div id="nameHelp" className="form-text text-info">
                         {tasksErr}
                     </div>
                 </div>
-                <div className="col-md-12 text-end my-3">
-                    <button className="btn btn-info border border-light text-light" value="add" onClick={()=>hanglersetTasks()}>Add</button>
+                <div className="col-md-12 text-end ">
+                    <button className="btn btn-success border border-light" value="add" onClick={()=>hanglersetTasks()}><i className="fa-solid fa-calendar-plus"></i></button>
                 </div>
             </div>
         </div>

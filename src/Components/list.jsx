@@ -1,48 +1,22 @@
-import { useEffect, useState } from "react";
-
-export default function List({tasks}){
-    const [myTasks , setMyTasks]=useState([])
-    useEffect(()=>{
-        console.log("Did Mout");
-        console.log(myTasks);
-        return ()=>{
-            setMyTasks(tasks);
-        }
-    },[tasks]);
-
-    //Done
-    let handlerDone=(e,task)=>{
-        // console.log(e.target.innerHTML);
-        e.target.innerHTML="DONE";
-        // console.log(e.target.innerHTML);
-        // console.log(task);
-        // task.color("red");
-    };
-    let handlerDelete=(task)=>{
-        let taskIndex=tasks.indexOf(task);
-        console.log(taskIndex);
-        tasks.splice(taskIndex,1);
-    }
-
+export default function List({tasks , onDelete ,isDone}){
     return (
         <>
         <div className="container border my-2 rounded p-3">
-            <div className="row text-center justify-content-center p-2 flex-column align-items-center">
-                <div className="col-12  bg-light my-3">
+            <div className="row text-center  p-2 flex-column">
+                <div className="col-12 shadow text-light my-3">
                     <h2>Let's get Some Work DONE ! 😎</h2>
                 </div>
-                {tasks.map((task,index) =>(
-                    <div className="col-6 d-flex justify-content-between m-2 border shadow p-2" key={index}>
-                        <h5 className="p-1">{task}</h5>
-                        <button className=" btn btn-success border p-1 mx-2" onClick={(e)=>{handlerDone(e,task)}}>Comfirem</button>
-                        <button className="btn btn-danger border p-1"onClick={()=>{handlerDelete(task)}}>Delete</button>
+                {tasks.map((task) =>(
+                    <div className="col-12 d-flex justify-content-between m-2 border shadow p-2" key={task.id}>
+                        <h5 className={`p-1 ${task.isDone ?"text-decoration-line-through": "" }` }>{task.name}</h5>
+                        <div>
+                        <button className=" btn btn-success border px-2 mx-2" onClick={()=>{isDone(task)}}>{task.isDone ? <i className="fa-solid fa-check-double"></i>:<i className="fa-solid fa-calendar-check"></i>}</button>
+                        <button className="btn btn-secondary border px-2"onClick={()=>onDelete(task)}><i className="fa-solid fa-calendar-xmark"></i></button>
+                        </div>
                     </div>
-
                 ))} 
             </div>
-        </div>
-        
-        
+        </div>        
         </>
     )
 }
