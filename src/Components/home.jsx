@@ -7,7 +7,7 @@ export default function Home({ setTasks , taskLength}){
         getTask(e.target.value);
         setTasksErr(
             e.target.value.length === 0 ? 
-            "Tasck Name Is Required" :
+            "Task Name Is Required" :
             e.target.value.length < 3 ?
             "This Must greater than '2' Character ":null
         );
@@ -20,7 +20,7 @@ export default function Home({ setTasks , taskLength}){
                 {id:taskLength+1 , name:task, isDone:false}
             );
         }else if(task ==""){
-            setTasksErr("Tasck Name Is Required");
+            setTasksErr("Task Name Is Required");
         }
         getTask("")
     }
